@@ -1,0 +1,70 @@
+1. Error tests/test_installation.py while -->module 'networkx' has no attribute 'OrderedDiGraph'
+2. Understand code segments
+3.
+
+docker ps -a [to list all containers]
+container id --> 272094bb1077
+docker start 272094bb1077
+docker logs 272094bb1077 --> erros
+
+
+docker image --> pg12
+psql container --> card-db
+user --> ceb
+
+
+sample run:
+python main.py --config configs/config.yaml --alg mscn --regen_featstats 1 --save_featstats 1
+
+ln -s "/c/Program Files/PostgreSQL/15/bin" /c/PG_bin
+export PATH="/c/PG_bin:$PATH"
+
+PROGRA~1
+
+docker exec -it imdb-postgres psql -U postgres -d IMDB
+
+psql -U postgres -d IMDB -a -f /docker-entrypoint-initdb.d/imdb_dump.sql
+
+container: imdb-postgres
+
+run container: 
+docker run --name imdb-postgres \
+  --network imdb-network \
+  -e POSTGRES_PASSWORD=<password> \
+  -e POSTGRES_DB=<dbname> \
+  -p 5432:5432 \
+  -d postgres:latest
+
+Copy IMDB Data Dump:
+docker cp imdbload_20240203.sql imdb-postgres:/docker-entrypoint-initdb.d/imdb_dump.sql
+
+Copy folder to container:
+docker cp query_representation imdb-postgres:/app/
+
+docker exec -it imdb-postgres python3 /app/main.py
+docker exec -it -e LD_LIBRARY_PATH=/usr/lib/llvm-14/lib imdb-postgres python3 /app/main.py
+docker exec -it -e LD_LIBRARY_PATH=/usr/lib/llvm-14/lib imdb-postgres python3 /app/main.py --config /app/configs/config.yaml --alg mscn --regen_featstats 1 --save_featstats 1
+
+docker exec -it imdb-postgres /bin/bash -c "ln -s /usr/lib/llvm-14/lib/libomp.so /usr/lib/ && cd /app && python3 main.py --config /app/configs/config.yaml --alg mscn --regen_featstats 1 --save_featstats 1"
+
+docker exec -it imdb-postgres /bin/bash -c "export LD_LIBRARY_PATH=/usr/lib/llvm-14/lib:/usr/local/lib && cd /app && python3 main.py --config /app/configs/config.yaml --alg mscn --regen_featstats 1 --save_featstats 1"
+
+
+Access the Container's Shell: 
+docker exec -it imdb-postgres /bin/bash
+
+Install: 
+apt install python3-sqlparse
+
+install directly
+docker exec -it imdb-postgres pip install klepto -t /app
+
+IMDB=# CREATE EXTENSION pg_hint_plan;
+ERROR:  extension "pg_hint_plan" has no installation script nor update path for version "1.7.0"
+
+
+
+
+
+
+
