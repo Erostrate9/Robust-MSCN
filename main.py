@@ -101,13 +101,14 @@ def get_alg(alg):
     else:
         assert False
 
-def get_query_fns():
+def get_query_fns(args):
     fns = list(glob.glob(args.query_dir + "/*"))
     skipped_templates = []
     train_qfns = []
     test_qfns = []
     val_qfns = []
-
+    print('args.query_dir')
+    print('fns: ', fns)
     if args.train_test_split_kind == "template":
         # the train/test split will be on the template names
         sorted_fns = copy.deepcopy(fns)
@@ -125,9 +126,10 @@ def get_query_fns():
                 continue
 
         # let's first select all the qfns we are going to load
+        print('qdir:', qdir)
         qfns = list(glob.glob(qdir+"/*.pkl"))
         qfns.sort()
-
+        print('qfns:', qfns)
         if args.num_samples_per_template == -1:
             qfns = qfns
         elif args.num_samples_per_template < len(qfns):
@@ -149,12 +151,14 @@ def get_query_fns():
             if args.val_size == 0:
                 cur_val_fns = []
             else:
+                print(qfns)
+                print('len(qfns):', len(qfns))
                 cur_val_fns, qfns = train_test_split(qfns,
                         test_size=1-args.val_size,
                         random_state=args.seed)
 
             cur_train_fns, cur_test_fns = train_test_split(qfns,
-                    test_size=args.test_size,
+                    test_size=args.test_size, train_size=1-args.test_size,
                     random_state=args.seed)
 
         train_qfns += cur_train_fns
@@ -231,7 +235,7 @@ def get_featurizer(trainqs, valqs, testqs):
 
 def main():
 
-    train_qfns, test_qfns, val_qfns = get_query_fns()
+    train_qfns, test_qfns, val_qfns = get_query_fns(args)
 
     trainqs = load_qdata(train_qfns)
 

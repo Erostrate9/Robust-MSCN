@@ -2,7 +2,7 @@ numpy==1.23.4
 pandas
 klepto
 networkx==2.8.8
-sqlparse
+sqlparse==0.4.2
 moz_sql_parser
 psycopg2-binary
 matplotlib
