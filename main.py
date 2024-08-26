@@ -281,7 +281,7 @@ def read_flags():
     parser.add_argument("--db_host", type=str, required=False,
             default="localhost")
     parser.add_argument("--user", type=str, required=False,
-            default="ceb")
+            default="imdb")
     parser.add_argument("--pwd", type=str, required=False,
             default="password")
     parser.add_argument("--port", type=int, required=False,
