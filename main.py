@@ -14,6 +14,7 @@ import klepto
 from sklearn.model_selection import train_test_split
 import pdb
 import copy
+import time
 
 def eval_alg(alg, eval_funcs, qreps, samples_type):
     '''
@@ -262,13 +263,21 @@ def main():
         alg.train(trainqs, valqs=valqs, testqs=testqs,
                 featurizer=featurizer, result_dir=args.result_dir)
         if alg not in ['true','postgres']:
+            start_time = time.time()
             eval_alg(alg, eval_fns, trainqs, "train")
-
+            execution_time = time.time() - start_time
+            print(f"{type(alg)} Evaluation time on training set: {execution_time:.2f} seconds")
         if len(valqs) > 0:
+            start_time = time.time()
             eval_alg(alg, eval_fns, valqs, "val")
+            execution_time = time.time() - start_time
+            print(f"{type(alg)} Evaluation time on validation set: {execution_time:.2f} seconds")
 
         if len(testqs) > 0:
+            start_time = time.time()
             eval_alg(alg, eval_fns, testqs, "test")
+            execution_time = time.time() - start_time
+            print(f"{type(alg)} Evaluation time on test set: {execution_time:.2f} seconds")
 
 def read_flags():
     parser = argparse.ArgumentParser()
