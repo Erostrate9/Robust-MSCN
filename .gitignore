@@ -1,3 +1,4 @@
 __pycache__
 queries/
 pg_hint_plan/
+!queries/ceb_runtime_qnames.txt
