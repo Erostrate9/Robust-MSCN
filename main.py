@@ -248,7 +248,10 @@ def main():
 
     if len(evalqs) > 0 and len(evalqs[0]) > 0:
         for ei, evalq in enumerate(evalqs):
+            start_time = time.time()
             eval_alg(alg, eval_fns, evalq, cfg, eval_qdirs[ei], featurizer=featurizer)
+            execution_time = time.time() - start_time
+            print(f"Evaluation time on eval set {ei}: {execution_time:.2f} seconds")
             del evalq[:]
 
 def read_flags():
