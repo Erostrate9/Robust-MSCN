@@ -1,6 +1,7 @@
 # Overview
-Model Size: around 2.6 MiB.
-Spent around 50 mins to train 30 epochs on JOB-light-train (val size=0.2, test_size=0.1). Selected Queries: 31172 train, 3464 test, 8658 val, 622 eval.
+- Check out Robust-MSCN.ipynb for more details.
+- Model Size: around 2.6 MiB.
+- training  and inference overheads: Spent around 50 mins to train 30 epochs on JOB-light-train (val size=0.2, test_size=0.1) with M3 Pro. Selected Queries: 31172 train, 3464 test, 8658 val, 622 eval.
 # Cardinality Estimation Benchmark
 
 This benchmark consolidates the code and workloads from two papers:
