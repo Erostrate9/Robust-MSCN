@@ -19,7 +19,7 @@ data:
     num_samples_per_template : -1
 
     # query, custom, templates
-    train_test_split_kind : "query"
+    train_test_split_kind : "template"
     test_size : 0.1
     val_size : 0.2
     # only used if split == custom

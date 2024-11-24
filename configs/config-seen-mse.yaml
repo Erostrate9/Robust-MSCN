@@ -107,7 +107,7 @@ model:
 
   # if loss == mse; combined with featurizer.ynormalization : log, this is optimizing q-error
   # other options for loss: flowloss; qloss --> needs different ynormalization;
-  loss_func_name : "flowloss"
+  loss_func_name : "mse"
   normalize_flow_loss : 1
 
   # important training / optimization flags
