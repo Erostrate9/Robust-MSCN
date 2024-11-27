@@ -3,7 +3,7 @@
 ## Train on JOBLight; Eval on JOB,CEB;
 
 eval:
-  use_wandb : 1
+  use_wandb : 0
   save_test_preds : 0
   save_pdf_plans : 0
 
@@ -11,8 +11,8 @@ eval:
   num_processes : -1
 
 data:
-    query_dir: "./queries/joblight_train"
-    eval_query_dir: "./queries/job/"
+    query_dir: "./queries/ceb-imdb"
+    eval_query_dir: "./queries/ceb-imdb"
     bitmap_dir: "./queries/allbitmaps/"
     query_templates: "all"
     eval_templates: "all"
@@ -20,7 +20,7 @@ data:
 
     # query, custom, templates
     train_test_split_kind : "template"
-    test_size : 0.1
+    test_size : 0.4
     val_size : 0.2
     # only used if split == custom
     train_tmps : null
@@ -31,7 +31,7 @@ data:
 
     #since 7a  is a template with a very large joingraph, we have a flag to
     #skip it to make things run faster
-    skip7a : 0
+    skip7a : 1
 
     seed : 123
     # Seed used when train_test_split_kind == template
@@ -64,7 +64,7 @@ featurizer:
   global_feat_tables : 0
   #bitmap_dir : "./queries/allbitmaps/"
 
-  sample_bitmap : 1
+  sample_bitmap : 0
   sample_bitmap_num : 1000
   sample_bitmap_buckets : 1000
   bitmap_onehotmask : 1
@@ -111,7 +111,7 @@ model:
   normalize_flow_loss : 1
 
   # important training / optimization flags
-  max_epochs : 100
+  max_epochs : 10
   eval_epoch : 2 # how often to evaluate on eval_fns during training
   eval_fns : "qerr,ppc" # logging things during training
   lr : 0.0001
