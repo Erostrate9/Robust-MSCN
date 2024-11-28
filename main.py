@@ -229,16 +229,16 @@ def main():
         alg.train(trainqs, valqs=valqs, testqs=None, evalqs = None,
                 eval_qdirs = eval_qdirs, featurizer=featurizer)
 
-    start_time = time.time()
-    eval_alg(alg, eval_fns, trainqs, cfg, "train", featurizer=featurizer)
-    execution_time = time.time() - start_time
-    print(f"{args.alg} Evaluation time on train set: {execution_time:.2f} seconds")
+    # start_time = time.time()
+    # eval_alg(alg, eval_fns, trainqs, cfg, "train", featurizer=featurizer)
+    # execution_time = time.time() - start_time
+    # print(f"{args.alg} Evaluation time on train set: {execution_time:.2f} seconds")
 
-    if len(valqs) > 0:
-        start_time = time.time()
-        eval_alg(alg, eval_fns, valqs, cfg, "val", featurizer=featurizer)
-        execution_time = time.time() - start_time
-        print(f"{args.alg} Evaluation time on val set: {execution_time:.2f} seconds")
+    # if len(valqs) > 0:
+    #     start_time = time.time()
+    #     eval_alg(alg, eval_fns, valqs, cfg, "val", featurizer=featurizer)
+    #     execution_time = time.time() - start_time
+    #     print(f"{args.alg} Evaluation time on val set: {execution_time:.2f} seconds")
 
     if len(testqs) > 0:
         start_time = time.time()

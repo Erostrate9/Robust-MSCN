@@ -12,7 +12,7 @@ eval:
 
 data:
     query_dir: "./queries/ceb-imdb"
-    eval_query_dir: "./queries/ceb-imdb"
+    eval_query_dir: ""
     bitmap_dir: "./queries/allbitmaps/"
     query_templates: "all"
     eval_templates: "all"
