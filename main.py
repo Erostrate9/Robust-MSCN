@@ -242,9 +242,11 @@ def main():
 
     if len(testqs) > 0:
         start_time = time.time()
+        print(' ----------- Evaluation time on test set starts -----------')
         eval_alg(alg, eval_fns, testqs, cfg, "test", featurizer=featurizer)
         execution_time = time.time() - start_time
         print(f"{args.alg} Evaluation time on test set: {execution_time:.2f} seconds")
+        print(' ----------- Evaluation time on test set ends -----------')
 
     if len(evalqs) > 0 and len(evalqs[0]) > 0:
         for ei, evalq in enumerate(evalqs):
